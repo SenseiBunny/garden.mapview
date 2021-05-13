@@ -25,6 +25,7 @@ from mapview.utils import clamp
 from itertools import takewhile
 
 import webbrowser
+from kivymd.app import MDApp
 
 Builder.load_string("""
 <MapMarker>:
@@ -32,7 +33,25 @@ Builder.load_string("""
     source: root.source
     size: list(map(dp, self.texture_size))
     allow_stretch: True
+    
+    Label:
+        
+        pos:  (self.parent.x -24.5, self.parent.y + 15)
+        center: self.parent.center
 
+        text: root.text
+        color: 255,255,255,0.7
+        font_size: "15sp"
+        
+
+                
+        canvas.before:      
+            Color:
+                rgba: 1, 1, 1, root.back_col
+            RoundedRectangle:
+                size: self.texture_size[0]+5,self.texture_size[1]+7 
+                radius: [10,]
+                pos:  (self.parent.x -(self.texture_size[0]/2)+22.8 , self.parent.y +53)
 <MapView>:
     canvas.before:
         StencilPush
@@ -130,6 +149,9 @@ class MapMarker(ButtonBehavior, Image):
     """Longitude of the marker
     """
 
+    text = StringProperty("Missing data")
+
+    back_col=NumericProperty(1)
     source = StringProperty(join(dirname(__file__), "icons", "marker.png"))
     """Source of the marker, defaults to our own marker.png
     """
