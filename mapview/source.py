@@ -21,15 +21,9 @@ class MapSource(object):
     # list of available providers
     # cache_key: (is_overlay, minzoom, maxzoom, url, attribution)
     providers = {
-        "osm": (0, 0, 19, "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", attribution_osm),
-        "osm-hot": (0, 0, 19, "http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png", ""),
-        "osm-de": (0, 0, 18, "http://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png", "Tiles @ OSM DE"),
-        "osm-fr": (0, 0, 20, "http://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png", "Tiles @ OSM France"),
-        "cyclemap": (0, 0, 17, "http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png", "Tiles @ Andy Allan"),
-        "thunderforest-cycle": (0, 0, 19, "http://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}.png", attribution_thunderforest),
-        "thunderforest-transport": (0, 0, 19, "http://{s}.tile.thunderforest.com/transport/{z}/{x}/{y}.png", attribution_thunderforest),
-        "thunderforest-landscape": (0, 0, 19, "http://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png", attribution_thunderforest),
-        "thunderforest-outdoors": (0, 0, 19, "http://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png", attribution_thunderforest),
+
+        "mapa": (0, 0, 18, "https://api.maptiler.com/maps/streets/256/{z}/{x}/{y}.png?key=4XeNVqhtk425FRXUoSEG", ""),
+
 
         # no longer available
         #"mapquest-osm": (0, 0, 19, "http://otile{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpeg", "Tiles Courtesy of Mapquest", {"subdomains": "1234", "image_ext": "jpeg"}),
@@ -139,3 +133,4 @@ class MapSource(object):
         if tile.state == "done":
             return
         Downloader.instance(cache_dir=self.cache_dir).download_tile(tile)
+
